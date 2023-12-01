@@ -1,21 +1,32 @@
 // Begin state variable declaration
 // Define my state variables (aka the variables I will use later)
-
+const randomName = ["Alice", "Bob", "Carol"]
+const randomOccupation = ["Writer", "Teacher", "Programmer"]
+const randomstartingPrice = ["30", "50", '70']
 
 // Sample data for starter freelancers
 const freelancers = [
     {
-        name: "Kelly",
-        occupation: "Financial Advisor",
-        startingPrice: "$60",
+        name: "Alice",
+        occupation: "Writer",
+        startingPrice: "30",
     }, 
     {
-        name: "Michael",
-        occupation: "Contractor",
-        startingPrice: "$65",
+        name: "Bob",
+        occupation: "Teacher",
+        startingPrice: "50",
+    },
+    {
+        name: "Carol",
+        occupation: "Programmer",
+        startingPrice: "70",
     }
 ]
 // End State Variables 
+
+// Point to existing container in HTMl
+const freelancersContainer = document.querySelector("#freelancers")
+console.log(freelancersContainer)
 
 // Set up interval 
 setInterval(addFreelancer, 5000)
@@ -25,17 +36,11 @@ render()
 
 //RENDER function - update to DOM to reflect the current state of the program
 function render() {
-    //Point to existing container in HTML
-    const freelancersContainer = document.querySelector("#freelancers")
-    console.log(freelancersContainer)
-
     //Creating the elements that we want to add
     const freelancersElements = freelancers.map((freelancer) => {
         const element = document.createElement("li") //Creating <li></li>
-        element.classList.add(freelancer.name, freelancer.occupation, freelancer.startingPrice) //Adding classes to li element
-        console.log(element)
-        return element //for example: <li class="Michael Contractor"></li>
-        //it will do this for each element in the map
+        element.textContent = `${freelancer.name}, ${freelancer.occupation}, ${freelancer.startingPrice}`
+        return element //
     })
 
     //Actually add those created elements to the container
@@ -43,10 +48,54 @@ function render() {
 }
 
 function addFreelancer() {
-    const selectedFreelancer = freelancers[Math.floor(Math.random() * freelancers.length)]
-    console.log(selectedFreelancer)
+    const name = randomName[Math.floor(Math.random() * randomName.length)]
+    
+    const occupation = randomOccupation[Math.floor(Math.random() * randomOccupation.length)]
+    
+    const startingPrice = randomstartingPrice[Math.floor(Math.random() * randomstartingPrice.length)]
+    
 
-    freelancers.push({color: selectedFreelancer, size: "small"})
+    freelancers.push({name, occupation, startingPrice})
 
     render()
 }
+
+function averagePrice() {
+    const totalPrice = freelancers.reduce((sum, freelancer) => sum + freelancer.startingPrice, 0);
+    const averagePrice = totalPrice / freelancers.length;
+
+    return averagePrice.toFixed(2)
+}
+
+
+// function getSum(freelancers) {
+//     for(var i = 0; i < freelancers.startingPrice.length; i++){
+//       sum = sum + freelancers.startingPrice[i]
+//     }
+//     return sum
+//   }
+
+// function getMean(freelancers) {
+//     return getSum/(getLength(freelancers.startingPrice))
+//   }
+// console.log(getMean)
+
+
+
+// li.innerHTML = `
+//       <h2>${freelancers.name}</h2>
+//       <p>${freelancers.occupation}</p>
+//       <p>${freelancers.startingPrice}</p>
+//     `;
+
+//INPUT THESE FUNCTIONS ABOVE?
+// function getSum(freelancers) {
+//     for(var i = 0; i < freelancers.startingPrice.length; i++){
+//       sum = sum + freelancers.startingPrice[i]
+//     }
+//     return sum
+//   }
+
+// function getMean(freelancers) {
+//     return sum/(getLength(freelancers.startingPrice))
+//   }
