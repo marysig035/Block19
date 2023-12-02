@@ -68,6 +68,7 @@ function averagePrice() {
 }
 
 
+
 // function getSum(freelancers) {
 //     for(var i = 0; i < freelancers.startingPrice.length; i++){
 //       sum = sum + freelancers.startingPrice[i]
