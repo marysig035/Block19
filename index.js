@@ -28,6 +28,9 @@ const freelancers = [
 const freelancersContainer = document.querySelector("#freelancers")
 console.log(freelancersContainer)
 
+const priceContainer = document.querySelector("#price")
+console.log(priceContainer)
+
 // Set up interval 
 setInterval(addFreelancer, 5000)
 
@@ -60,14 +63,26 @@ function addFreelancer() {
     render()
 }
 
-function averagePrice() {
-    const totalPrice = freelancers.reduce((sum, freelancer) => sum + freelancer.startingPrice, 0);
-    const averagePrice = totalPrice / freelancers.length;
-
+function calcAveragePrice() {
+    let totalPrice = 0
+    freelancers.forEach((freelancers) => {
+       totalPrice += freelancers.startingPrice
+    })
+    let averagePrice = totalPrice/freelancers.length
     return averagePrice.toFixed(2)
 }
 
+console.log(calcAveragePrice());
 
+render();
+
+
+// function averagePrice() {
+//     const totalPrice = freelancers.reduce((sum, freelancer) => sum + freelancer.startingPrice, 0);
+//     const averagePrice = totalPrice / freelancers.length;
+
+//     return averagePrice.toFixed(2)
+// }
 
 // function getSum(freelancers) {
 //     for(var i = 0; i < freelancers.startingPrice.length; i++){
